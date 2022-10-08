@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage</title>
+</head>
+
+<body>
+    <p>anda sudah menekan tombol sebanyak <span id="count" style="font-weight: bold;"></span> kali</p>
+    <button id="btn">Click Disini!!!</button>
+    <button id="clear">Hapus Storage</button>
+    <script>
+        const cacheKey = 'number';
+        if (typeof (Storage) !== 'undefined') {
+            if (localStorage.getItem(cacheKey) === 'undefined') {
+                localStorage.setItem(cacheKey, 0)
+            }
+
+            const btn = document.querySelector('#btn');
+            const clearButton = document.querySelector('#clear');
+            const count = document.querySelector('#count');
+            btn.addEventListener('click', function (event) {
+                let number = localStorage.getItem(cacheKey);
+                number++;
+                localStorage.setItem(cacheKey, number);
+                count.innerHTML = localStorage.getItem(cacheKey);
+            });
+
+            clearButton.addEventListener('click', function (event) {
+                localStorage.removeItem(cacheKey);
+                count.innerHTML = localStorage.getItem(cacheKey);
+            })
+        } else {
+            alert('browser tidak support')
+        }
+
+
+    </script>
+
+</body>
+
+</html>
